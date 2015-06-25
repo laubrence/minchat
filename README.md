@@ -21,6 +21,8 @@ javascript代码，该代码调用了WebSockets的API：
 
 第二行到第五行为WebSocket对象注册消息的处理函数，WebSocket对象一共支持四个消息 onopen, onmessage, onclose和onerror，当Browser和WebSocketServer连接成功后，会触发onopen消息；如果连接失败，发送、接收数据失败或者处理数据出现错误，browser会触发onerror消息；当Browser接收到WebSocketServer发送过来的数据时，就会触发onmessage消息，参数evt中包含server传输过来的数据；当Browser接收到WebSocketServer端发送的关闭连接请求时，就会触发onclose消息。我们可以看出所有的操作都是采用消息的方式触发的，这样就不会阻塞UI，使得UI有更快的响应时间，得到更好的用户体验。
 
+---------
+
 ##系统实现效果图
 
 
