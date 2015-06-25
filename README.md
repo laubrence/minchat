@@ -23,6 +23,8 @@ javascript代码，该代码调用了WebSockets的API：
 
 ---------
 
-##系统实现效果图
+##系统实现
 
+-架构：springmvc+mybatis+shiro+mysql+websocket
 
+###系统实现截图
