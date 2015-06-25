@@ -7,7 +7,7 @@ WebSocket协议是一种双向通信协议，它建立在TCP之上，同http一�
 
 下面是一个简单的建立握手的时序图：
 
-![image](https://github.com/laubrence/static/blob/master/websocket.gif)
+![image](https://raw.githubusercontent.com/laubrence/static/master/websocket.gif)
 
 javascript代码，该代码调用了WebSockets的API：
 
