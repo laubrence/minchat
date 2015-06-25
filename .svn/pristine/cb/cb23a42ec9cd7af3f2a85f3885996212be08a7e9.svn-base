@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                value="%-d{yyyy-MM-dd HH:mm:ss} %p [%t] %c{1}.%M(%L) | %m%n"/>
+        </layout>
+    </appender>  
+ 
+     <appender name="APPLOGFILE" class="org.apache.log4j.DailyRollingFileAppender">
+    	<param name="encoding" value="UTF-8" />
+	    <param name="File" value="${springmvc.root}/WEB-INF/logs/bpm.log" />
+	    <param name="DatePattern" value="'.'yyyy-MM-dd" />
+	    <param name="Append" value="true" />
+	    <layout class="org.apache.log4j.PatternLayout">
+	      <param name="ConversionPattern" value="[ECP] %-d{yyyy-MM-dd HH:mm:ss} %-5p %-15c{1}: %m%n"/>
+	    </layout>
+     </appender>
+
+	<logger name="java.sql.Connection">
+	 	<level value="DEBUG"/>
+	 </logger>
+	 <logger name="java.sql.Statement">
+	  	<level value="DEBUG"/>
+	 </logger>
+	 <logger name="java.sql.PreparedStatement">
+	 	<level value="DEBUG"/>
+	 </logger>
+	 <logger name="org.springframework.jdbc">
+        <level value="ERROR"/>
+    </logger>
+	 <logger name="java.sql.ResultSet">
+	  	<level value="ERROR"/>
+	 </logger>
+	 
+	 <logger name="java.sql">
+        <level value="DEBUG" />
+    </logger>
+    
+    <logger name="org.apache.ibatis">
+        <level value="DEBUG" />
+    </logger>
+    
+    <logger name="org.apache.ibatis.type.BaseTypeHandler">
+        <level value="WRAN" />
+    </logger>
+
+    <!-- Suppress success logging from InteractiveAuthenticationSuccessEvent -->
+    <logger name="org.springframework.security">
+        <level value="DEBUG"/>
+    </logger>
+
+    <logger name="org.apache">
+        <level value="WARN"/>
+    </logger>
+    
+    <logger name="com.hotent.core.web.servlet.SpringMvcServlet">
+    	<level value="ERROR" />
+    </logger>
+    
+    <logger name="org.springframework.security">
+        <level value="ERROR"/>
+    </logger>
+    
+     <logger name="org.springframework">
+        <level value="WARN"/>
+    </logger>
+    <logger name="com.hotent.core.web.filter">
+    	<level value="WARN"/>
+    </logger>
+     <logger name="org.displaytag">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="com.hotent">
+        <level value="DEBUG"/>
+    </logger>
+
+    <logger name="org.activiti">
+        <level value="DEBUG"/>
+    </logger>
+  
+	
+	
+    <logger name="org.springframework.transaction">
+        <level value="ERROR"/>
+    </logger>
+	 
+	<logger name="org.apache.catalina">
+		<level value="WARN"/>
+	</logger>
+	
+    <root>
+        <level value="DEBUG"/>
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="APPLOGFILE"/>
+    </root>
+
+</log4j:configuration>

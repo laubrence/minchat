@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eric.chat.dao.CtOnlineGuestDao" >
+  <resultMap id="BaseResultMap" type="com.eric.chat.model.CtOnlineGuest" >
+    <id column="GUEST_ID" property="guestId" jdbcType="BIGINT" />
+    <result column="INBOUND_ID" property="inboundId" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="SESSION_ID" property="sessionId" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GUEST_ID, INBOUND_ID, USER_ID, USER_NAME, SESSION_ID, REMARK, CREATETIME
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ct_online_guest
+    where GUEST_ID = #{guestId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ct_online_guest
+    where GUEST_ID = #{guestId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.eric.chat.model.CtOnlineGuest" >
+    insert into ct_online_guest (GUEST_ID, INBOUND_ID, USER_ID, 
+      USER_NAME, SESSION_ID, REMARK, 
+      CREATETIME)
+    values (#{guestId,jdbcType=BIGINT}, #{inboundId,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
+      #{userName,jdbcType=VARCHAR}, #{sessionId,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.eric.chat.model.CtOnlineGuest" >
+    insert into ct_online_guest
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guestId != null" >
+        GUEST_ID,
+      </if>
+      <if test="inboundId != null" >
+        INBOUND_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="sessionId != null" >
+        SESSION_ID,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guestId != null" >
+        #{guestId,jdbcType=BIGINT},
+      </if>
+      <if test="inboundId != null" >
+        #{inboundId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eric.chat.model.CtOnlineGuest" >
+    update ct_online_guest
+    <set >
+      <if test="inboundId != null" >
+        INBOUND_ID = #{inboundId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionId != null" >
+        SESSION_ID = #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where GUEST_ID = #{guestId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eric.chat.model.CtOnlineGuest" >
+    update ct_online_guest
+    set INBOUND_ID = #{inboundId,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=BIGINT},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      SESSION_ID = #{sessionId,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP}
+    where GUEST_ID = #{guestId,jdbcType=BIGINT}
+  </update>
+  
+  <!-- selectAll -->
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from ct_online_guest
+  </select>
+  
+  <delete id="deleteByInboundId" parameterType="java.lang.String" >
+    delete from ct_online_guest
+    where INBOUND_ID = #{inboundId,jdbcType=VARCHAR}
+  </delete>
+  
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+  		xmlns:mvc="http://www.springframework.org/schema/mvc"
+  		xsi:schemaLocation="
+		    http://www.springframework.org/schema/beans
+		    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		    http://www.springframework.org/schema/context
+		    http://www.springframework.org/schema/context/spring-context-3.2.xsd"
+		    default-autowire="byName" default-lazy-init="false">
+	
+	<!-- component-scan @Component , @Controller , @Service , @Repository  -->
+    <!-- 扫描文件（自动将dao servicec层注入） -->
+	<!-- 打开Spring的Annotation支持 -->
+	<!-- 设定Spring 去哪些包中找Annotation,不需要像传统的方式配置多个bean-->
+	<!-- 它背后注册了很多用于解析注解的处理器,其中就包括<context:annotation-config/>配置的注解所使用的处理器 -->  
+    <!-- 所以配置了<context:component-scan base-package="">之后,便无需再配置<context:annotation-config> -->  
+   	<context:component-scan base-package="com.eric.*.dao" />
+   	<context:component-scan base-package="com.eric.*.service" />
+   	
+   	<!-- spring上下文,可以获取 上下文的Context -->
+    <bean id="appUtil" class="com.eric.core.util.AppUtil" />
+	
+	<!--加载配置文件-->
+	<bean id="configproperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+          <property name="location" value="classpath:/conf/app.properties"/>
+    </bean>
+     <bean id="propertyConfigurer" class="com.eric.core.web.ProjectDBinfoConfigurer">
+         <property name="properties" ref="configproperties"/>
+    </bean>
+</beans>

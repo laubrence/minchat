@@ -1,0 +1,34 @@
+package com.eric.chat.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.eric.core.util.SystemInfoUtil;
+import com.eric.core.util.UniqueIdUtil;
+
+
+@Controller
+@RequestMapping("/chat/")
+public class ChatController {
+
+	@RequestMapping("customer")
+	public String customChat(HttpServletRequest request,Model model){
+	    return "chat/customer";       
+	}
+	
+	@RequestMapping("guest")
+	public String guestChat(HttpServletRequest request,Model model){
+	    return "chat/guest";       
+	}
+	@RequestMapping("test")
+	public String testChat(HttpServletRequest request,Model model){
+		System.out.println(UniqueIdUtil.genId());
+		System.out.println(SystemInfoUtil.getJdkInfo());
+		System.out.println(SystemInfoUtil.getMemoryInfo());
+
+	    return "chat/test";       
+	}
+}

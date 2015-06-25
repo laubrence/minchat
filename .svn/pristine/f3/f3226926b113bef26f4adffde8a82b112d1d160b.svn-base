@@ -1,0 +1,154 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Fixed Top Navbar Example for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="navbar-fixed-top.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!--  -->
+       <style type="text/css">
+        input#chat {
+            width: 410px
+        }
+		
+        #console {
+            height: 270px;
+            overflow-y: scroll;
+            padding: 5px;
+            width: 100%;
+        }
+
+        #console p {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+    
+    <script type="text/javascript">
+        var Chat = {};
+
+        Chat.socket = null;
+
+        Chat.connect = (function(host) {
+            if ('WebSocket' in window) {
+                Chat.socket = new WebSocket(host);
+            } else if ('MozWebSocket' in window) {
+                Chat.socket = new MozWebSocket(host);
+            } else {
+                Console.log('-----该浏览器不支持此聊天-----');
+                return;
+            }
+
+            Chat.socket.onopen = function () {
+                Console.log('-----系统已连接-----');
+                document.getElementById('chat').onkeydown = function(event) {
+                    if (event.keyCode == 13) {
+                        Chat.sendMessage();
+                    }
+                };
+            };
+
+            Chat.socket.onclose = function () {
+                document.getElementById('chat').onkeydown = null;
+                Console.log('-----系统已断开连接-----');
+            };
+
+            Chat.socket.onmessage = function (message) {
+                Console.log(message.data);
+            };
+        });
+
+        Chat.initialize = function() {
+            if (window.location.protocol == 'http:') {
+                Chat.connect('ws://' + window.location.host + '/eric/message'+window.location.search);
+            } else {
+                Chat.connect('wss://' + window.location.host + '/eric/message'+window.location.search);
+            }
+        };
+
+        Chat.sendMessage = (function() {
+            var msg = document.getElementById('chat').value;
+            Console.log("我："+msg);
+            if (msg != '') {
+                var message = {};
+        		message.type="guest_send";
+        		message.msg=msg;
+        		Chat.socket.send(JSON.stringify(message));
+                document.getElementById('chat').value = '';
+            }
+        });
+
+        var Console = {};
+
+        Console.log = (function(message) {
+            var console = document.getElementById('console');
+            var p = document.createElement('p');
+            p.style.wordWrap = 'break-word';
+            p.innerHTML = message;
+            console.appendChild(p);
+            while (console.childNodes.length > 25) {
+                console.removeChild(console.firstChild);
+            }
+            console.scrollTop = console.scrollHeight;
+        });
+
+        Chat.initialize();
+        function sendMsg(){
+        	Chat.sendMessage();
+        }
+
+    </script>
+  </head>
+
+  <body>
+
+    <div class="container">
+    
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div id="console-container">
+	        <div id="console"></div>
+	    </div>
+      </div>
+      <p>
+        <input type="text" placeholder="type and press enter to chat" id="chat">
+        <button onclick="sendMsg()">发送</button>
+    </p>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

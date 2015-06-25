@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eric.chat.dao.CtOnlineCustomerDao" >
+  <resultMap id="BaseResultMap" type="com.eric.chat.model.CtOnlineCustomer" >
+    <id column="CUSTOMER_ID" property="customerId" jdbcType="BIGINT" />
+    <result column="INBOUND_ID" property="inboundId" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="SESSION_ID" property="sessionId" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CUSTOMER_ID, INBOUND_ID, USER_ID, SESSION_ID, REMARK, CREATETIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ct_online_customer
+    where CUSTOMER_ID = #{customerId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ct_online_customer
+    where CUSTOMER_ID = #{customerId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.eric.chat.model.CtOnlineCustomer" >
+    insert into ct_online_customer (CUSTOMER_ID, INBOUND_ID, USER_ID, 
+      SESSION_ID, REMARK, CREATETIME
+      )
+    values (#{customerId,jdbcType=BIGINT}, #{inboundId,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
+      #{sessionId,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.eric.chat.model.CtOnlineCustomer" >
+    insert into ct_online_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customerId != null" >
+        CUSTOMER_ID,
+      </if>
+      <if test="inboundId != null" >
+        INBOUND_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="sessionId != null" >
+        SESSION_ID,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customerId != null" >
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="inboundId != null" >
+        #{inboundId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.eric.chat.model.CtOnlineCustomer" >
+    update ct_online_customer
+    <set >
+      <if test="inboundId != null" >
+        INBOUND_ID = #{inboundId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="sessionId != null" >
+        SESSION_ID = #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where CUSTOMER_ID = #{customerId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.eric.chat.model.CtOnlineCustomer" >
+    update ct_online_customer
+    set INBOUND_ID = #{inboundId,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=BIGINT},
+      SESSION_ID = #{sessionId,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP}
+    where CUSTOMER_ID = #{customerId,jdbcType=BIGINT}
+  </update>
+  
+  <!-- selectAll -->
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from ct_online_customer 
+  </select>
+  
+  <!-- selectAll -->
+  <select id="getCustomerRandOne" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from ct_online_customer ORDER BY RAND() LIMIT 1
+  </select>
+  
+  <delete id="deleteByInboundId" parameterType="java.lang.String" >
+    delete from ct_online_customer
+    where INBOUND_ID = #{inboundId,jdbcType=VARCHAR}
+  </delete>
+  
+  
+  
+</mapper>
