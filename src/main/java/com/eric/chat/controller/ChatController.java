@@ -24,6 +24,11 @@ import com.eric.core.util.UniqueIdUtil;
 @RequestMapping("/chat/")
 public class ChatController {
 
+	/**
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("customer")
 	public String customChat(HttpServletRequest request,Model model){
 	    return "chat/customer";       
