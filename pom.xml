@@ -218,6 +218,13 @@
 			<version>${slf4j.version}</version>
 		</dependency>
 		<!-- log end -->
+		<!--tomcat7 websocket -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat7-websocket</artifactId>
+			<version>7.0.47</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
   <build>
     <finalName>eric</finalName>
