@@ -27,8 +27,21 @@ javascript代码，该代码调用了WebSockets的API：
 
 - 架构：springmvc+mybatis+shiro+mysql+websocket
 
-###系统实现截图
 
+-访客人员地址：http://localhost:8080/chat/guest
+-客服人员登录地址：http://localhost:8080/chat/customer   admin/admin
+
+备注：
+js发起ws请求时，没有加web context，所以在访问系统的时候，也不要加context,如果需要加context,则修改guest.js文件把context加上
+Chat.initialize = function() {
+    if (window.location.protocol == 'http:') {
+        Chat.connect('ws://' + window.location.host + '/message'+window.location.search);
+    } else {
+        Chat.connect('wss://' + window.location.host + '/message'+window.location.search);
+    }
+};
+
+###系统实现截图
 ![image](https://raw.githubusercontent.com/laubrence/static/master/login.jpg)
 
 ![image](https://raw.githubusercontent.com/laubrence/static/master/customer2.jpg)
