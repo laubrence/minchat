@@ -30,13 +30,6 @@ CREATE TABLE `ct_customer_guest` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of ct_customer_guest
--- ----------------------------
-INSERT INTO `ct_customer_guest` VALUES ('30000000000034', 'fd1d82fbb97e45d4927ee7ee00f6068d', '6614f8b3c03f4383a65b0177a9e72fbf', null, null, '2016-04-07 16:13:20');
-INSERT INTO `ct_customer_guest` VALUES ('30000000000036', 'fd1d82fbb97e45d4927ee7ee00f6068d', '2c373623ad214846a75b3560c24f31dd', null, null, '2016-04-07 16:13:24');
-INSERT INTO `ct_customer_guest` VALUES ('30000000000038', 'fd1d82fbb97e45d4927ee7ee00f6068d', 'dafff1cf1ce340f982239e71777f0aed', null, null, '2016-04-07 16:13:28');
-
--- ----------------------------
 -- Table structure for ct_online_customer
 -- ----------------------------
 DROP TABLE IF EXISTS `ct_online_customer`;
@@ -49,11 +42,6 @@ CREATE TABLE `ct_online_customer` (
   `CREATETIME` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`CUSTOMER_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of ct_online_customer
--- ----------------------------
-INSERT INTO `ct_online_customer` VALUES ('30000000000023', 'fd1d82fbb97e45d4927ee7ee00f6068d', '1', null, null, '2016-04-07 16:11:28');
 
 -- ----------------------------
 -- Table structure for ct_online_guest
@@ -71,16 +59,6 @@ CREATE TABLE `ct_online_guest` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of ct_online_guest
--- ----------------------------
-INSERT INTO `ct_online_guest` VALUES ('30000000000017', '41bc4d4873d14ce297e9c8b13da646f8', null, '??1', null, null, '2016-04-07 16:09:10');
-INSERT INTO `ct_online_guest` VALUES ('30000000000020', '382337626ef9445ea0e6923306c28b11', null, '??2', null, null, '2016-04-07 16:10:03');
-INSERT INTO `ct_online_guest` VALUES ('30000000000024', '73549f69e8194fed80d4cac5e3c2cfc8', null, '??3', null, null, '2016-04-07 16:11:39');
-INSERT INTO `ct_online_guest` VALUES ('30000000000033', '6614f8b3c03f4383a65b0177a9e72fbf', null, '??4', null, null, '2016-04-07 16:13:20');
-INSERT INTO `ct_online_guest` VALUES ('30000000000035', '2c373623ad214846a75b3560c24f31dd', null, '??5', null, null, '2016-04-07 16:13:24');
-INSERT INTO `ct_online_guest` VALUES ('30000000000037', 'dafff1cf1ce340f982239e71777f0aed', null, '??6', null, null, '2016-04-07 16:13:28');
-
--- ----------------------------
 -- Table structure for ct_user_msg
 -- ----------------------------
 DROP TABLE IF EXISTS `ct_user_msg`;
@@ -94,21 +72,6 @@ CREATE TABLE `ct_user_msg` (
   PRIMARY KEY (`MSG_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of ct_user_msg
--- ----------------------------
-INSERT INTO `ct_user_msg` VALUES ('30000000000019', '4', '??1', '1', '22', '2016-04-07 16:09:14');
-INSERT INTO `ct_user_msg` VALUES ('30000000000026', '4', '??3', '1', '22', '2016-04-07 16:11:42');
-INSERT INTO `ct_user_msg` VALUES ('30000000000027', '4', '??3', '1', '333', '2016-04-07 16:11:50');
-INSERT INTO `ct_user_msg` VALUES ('30000000000028', '4', '??3', '1', '444', '2016-04-07 16:12:20');
-INSERT INTO `ct_user_msg` VALUES ('30000000000029', '2', '1', '??3', '<img src=\'http://192.168.26.87:8008/images/chat/img/emo_50.gif\'/>', '2016-04-07 16:12:25');
-INSERT INTO `ct_user_msg` VALUES ('30000000000030', '4', '??3', '1', '444', '2016-04-07 16:12:43');
-INSERT INTO `ct_user_msg` VALUES ('30000000000031', '4', '??3', '1', '55', '2016-04-07 16:12:50');
-INSERT INTO `ct_user_msg` VALUES ('30000000000032', '2', '1', '??3', '44', '2016-04-07 16:12:53');
-INSERT INTO `ct_user_msg` VALUES ('30000000000039', '4', '??4', '1', '11', '2016-04-07 16:13:37');
-INSERT INTO `ct_user_msg` VALUES ('30000000000040', '4', '??5', '1', '33', '2016-04-07 16:13:42');
-INSERT INTO `ct_user_msg` VALUES ('30000000000041', '4', '??5', '1', '44', '2016-04-07 16:13:53');
-INSERT INTO `ct_user_msg` VALUES ('30000000000042', '4', '??6', '1', '555', '2016-04-07 16:13:58');
 
 -- ----------------------------
 -- Table structure for sys_db_id
