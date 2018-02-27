@@ -36,8 +36,8 @@
 		<!-- 连接属性 -->
 		<property name="connectionProperties" value="clientEncoding=UTF-8"/>
 	</bean>
-	
-	<bean id="dataSourceSN" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">  
+
+	<bean id="dataSourceSN" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
@@ -59,8 +59,8 @@
 		<!-- 连接属性 -->
 		<property name="connectionProperties" value="clientEncoding=UTF-8"/>
 	</bean>
-  
-	
+
+
 	<!--jdbcTemplate-->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource"/>

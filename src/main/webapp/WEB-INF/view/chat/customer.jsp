@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>上学趣在线客服系统</title>
+<title>在线客服系统</title>
 <link rel="stylesheet" type="text/css" href="${ctx}/css/customer.css?v=0.1" />
 <script type="text/javascript" src="${ctx}/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="${ctx}/js/customer.js?v=0.1"></script>
@@ -20,7 +20,7 @@ EvPNG.fix('body, div, ul, img, li, input, a, span ,label');
 <![endif]-->
 </head>
 <body class="keBody">
-<h1 class="keTitle">上学趣在线客服系统</h1>
+<h1 class="keTitle">在线客服系统</h1>
 <div class="kePublic">
 <!--效果html开始-->
     <div class="content">

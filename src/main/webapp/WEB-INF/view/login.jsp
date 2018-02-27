@@ -6,7 +6,7 @@
 <html dir="ltr" lang="en-US">
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>上学趣在线客服系统</title>
+	<title>在线客服系统</title>
 	<style type="text/css">
     </style>
 	<link href="${ctx}/css/css.css" rel="stylesheet" type="text/css">
@@ -29,8 +29,7 @@
 	    <tr>
 	      <td width="376" valign="top"><div class="insideword1">
 	        <DIV> 
-	          <p>上学趣在线客服系统<br>
-              上学趣微信平台移动解答专家</p>
+	          <p>在线客服系统<br></p>
 	        </DIV>
 	      </div>
           <!-- <div class="addnew"><a href="http://www.schoolgo.com.cn" class="addnew1"></a></div> --></td>
@@ -73,6 +72,6 @@
       
      
 	</div>
-    <div id="bottomNav">版权所有 ©2015 上学趣微信家校平台 | 粤ICP备14098389号 </div>
+    <div id="bottomNav">版权所有 ©2015  </div>
 	</body>
 </html>
