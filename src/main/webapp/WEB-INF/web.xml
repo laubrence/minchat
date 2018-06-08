@@ -1,132 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	id="WebApp_ID" version="2.5">
-	<display-name>Archetype Created Web Application</display-name>
+		 xmlns="http://java.sun.com/xml/ns/javaee"
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+		 id="WebApp_ID" version="2.5">
+    <display-name>Archetype Created Web Application</display-name>
 
-	<!-- 读取spring配置文件 -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:conf/spring-context.xml</param-value>
-	</context-param>
-	<!-- 设计路径变量值 -->
-	<context-param>
-		<param-name>webAppRootKey</param-name>
-		<param-value>springmvc.root</param-value>
-	</context-param>
+    <!-- 读取spring配置文件 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:conf/spring-context.xml</param-value>
+    </context-param>
+    <!-- 设计路径变量值 -->
+    <context-param>
+        <param-name>webAppRootKey</param-name>
+        <param-value>springmvc.root</param-value>
+    </context-param>
 
 
-	<!-- Spring字符集过滤器 -->
-	<!-- 解决乱码问题 -->  
-    <!-- forceEncoding默认为false,此时效果可大致理解为request.setCharacterEncoding("UTF-8") -->  
+    <!-- Spring字符集过滤器 -->
+    <!-- 解决乱码问题 -->
+    <!-- forceEncoding默认为false,此时效果可大致理解为request.setCharacterEncoding("UTF-8") -->
     <!-- forceEncoding=true后,可大致理解为request.setCharacterEncoding("UTF-8")和response.setCharacterEncoding("UTF-8") -->
-	<filter>
-		<filter-name>SpringEncodingFilter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-		<init-param>
-			<param-name>forceEncoding</param-name>
-			<param-value>true</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>SpringEncodingFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-
-	<!-- 日志记录 -->
-	<context-param>
-		<!-- 日志配置文件路径 -->
-		<param-name>log4jConfigLocation</param-name>
-		<param-value>classpath:conf/log4j.xml</param-value>
-	</context-param>
-	<context-param>
-		<!-- 日志页面的刷新间隔 -->
-		<param-name>log4jRefreshInterval</param-name>
-		<param-value>6000</param-value>
-	</context-param>
-	<listener>
-		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-	</listener>
-	
-	<!-- 防止Spring内存溢出监听器 -->
-  	<!-- 防止发生java.beans.Introspector内存泄露,应将它配置在ContextLoaderListener的前面 -->  
-    <!-- 详细描述见http://blog.csdn.net/jadyer/article/details/11991457 -->  
-    <listener>  
-        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>  
-    </listener>  
-	
-	<!-- 实例化Spring容器 -->  
-    <!-- 应用启动时,该监听器被执行,它会读取Spring相关配置文件,其默认会到WEB-INF中查找applicationContext.xml -->  
-    <!-- http://starscream.iteye.com/blog/1107036 -->  
-    <!-- http://www.davenkin.me/post/2012-10-18/40039948363 -->  
-    <!-- WebApplicationContextUtils.getWebApplicationContext() -->  
-    <listener>  
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
-    </listener>
-	
-	
-	<!-- 配置Shiro过滤器,先让Shiro过滤系统接收到的请求 -->  
-    <!-- 这里filter-name必须对应applicationContext.xml中定义的<bean id="shiroFilter"/> -->  
-    <!-- 使用[/*]匹配所有请求,保证所有的可控请求都经过Shiro的过滤 -->  
-    <!-- 通常会将此filter-mapping放置到最前面(即其他filter-mapping前面),以保证它是过滤器链中第一个起作用的 -->  
-    <filter>  
-        <filter-name>shiroFilter</filter-name>  
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>  
-        <init-param>  
-            <!-- 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理 -->  
-            <param-name>targetFilterLifecycle</param-name>  
-            <param-value>true</param-value>  
-        </init-param>  
-    </filter>  
-    <filter-mapping>  
-        <filter-name>shiroFilter</filter-name>  
-        <url-pattern>/*</url-pattern>  
+    <filter>
+        <filter-name>SpringEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>SpringEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
-  	
 
-	<!-- springMVC核心配置 -->
-	<servlet>
-		<servlet-name>spring</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:conf/spring-mvc.xml</param-value>
-		</init-param>
-		<load-on-startup>2</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>spring</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-	
-	<session-config>  
-        <session-timeout>30</session-timeout>  
-    </session-config> 
-	
-	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
+    <context-param>
+        <param-name>logbackConfigLocation</param-name>
+        <param-value>classpath:conf/logback.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
+    </listener>
 
-	<!-- 错误跳转页面 -->
-	<error-page>
-		<!-- 路径不正确 -->
-		<error-code>404</error-code>
-		<location>/WEB-INF/errorpage/404.jsp</location>
-	</error-page>
-	<error-page>
-		<!-- 没有访问权限，访问被禁止 -->
-		<error-code>405</error-code>
-		<location>/WEB-INF/errorpage/405.jsp</location>
-	</error-page>
-	<error-page>
-		<!-- 内部错误 -->
-		<error-code>500</error-code>
-		<location>/WEB-INF/errorpage/500.jsp</location>
-	</error-page>
+    <!-- 防止Spring内存溢出监听器 -->
+    <!-- 防止发生java.beans.Introspector内存泄露,应将它配置在ContextLoaderListener的前面 -->
+    <!-- 详细描述见http://blog.csdn.net/jadyer/article/details/11991457 -->
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+
+    <!-- 实例化Spring容器 -->
+    <!-- 应用启动时,该监听器被执行,它会读取Spring相关配置文件,其默认会到WEB-INF中查找applicationContext.xml -->
+    <!-- http://starscream.iteye.com/blog/1107036 -->
+    <!-- http://www.davenkin.me/post/2012-10-18/40039948363 -->
+    <!-- WebApplicationContextUtils.getWebApplicationContext() -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+
+    <!-- 配置Shiro过滤器,先让Shiro过滤系统接收到的请求 -->
+    <!-- 这里filter-name必须对应applicationContext.xml中定义的<bean id="shiroFilter"/> -->
+    <!-- 使用[/*]匹配所有请求,保证所有的可控请求都经过Shiro的过滤 -->
+    <!-- 通常会将此filter-mapping放置到最前面(即其他filter-mapping前面),以保证它是过滤器链中第一个起作用的 -->
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <!-- 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理 -->
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!-- springMVC核心配置 -->
+    <servlet>
+        <servlet-name>spring</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:conf/spring-mvc.xml</param-value>
+        </init-param>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>spring</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- 错误跳转页面 -->
+    <error-page>
+        <!-- 路径不正确 -->
+        <error-code>404</error-code>
+        <location>/WEB-INF/errorpage/404.jsp</location>
+    </error-page>
+    <error-page>
+        <!-- 没有访问权限，访问被禁止 -->
+        <error-code>405</error-code>
+        <location>/WEB-INF/errorpage/405.jsp</location>
+    </error-page>
+    <error-page>
+        <!-- 内部错误 -->
+        <error-code>500</error-code>
+        <location>/WEB-INF/errorpage/500.jsp</location>
+    </error-page>
 </web-app>
 

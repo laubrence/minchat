@@ -1,18 +1,18 @@
 <!--
-  Licensed to the Apache Software Foundation (ASF) under one or more
-  contributor license agreements.  See the NOTICE file distributed with
-  this work for additional information regarding copyright ownership.
-  The ASF licenses this file to You under the Apache License, Version 2.0
-  (the "License"); you may not use this file except in compliance with
-  the License.  You may obtain a copy of the License at
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements. See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License. You may obtain a copy of the License at
 
-      http://www.apache.org/licenses/LICENSE-2.0
+http://www.apache.org/licenses/LICENSE-2.0
 
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 -->
 <!DOCTYPE html>
 <html>
@@ -47,7 +47,7 @@
 
         Chat.socket = null;
 
-        Chat.connect = (function(host) {
+        Chat.connect = (function (host) {
             if ('WebSocket' in window) {
                 Chat.socket = new WebSocket(host);
             } else if ('MozWebSocket' in window) {
@@ -59,7 +59,7 @@
 
             Chat.socket.onopen = function () {
                 Console.log('Info: WebSocket connection opened.');
-                document.getElementById('chat').onkeydown = function(event) {
+                document.getElementById('chat').onkeydown = function (event) {
                     if (event.keyCode == 13) {
                         Chat.sendMessage();
                     }
@@ -76,15 +76,15 @@
             };
         });
 
-        Chat.initialize = function() {
+        Chat.initialize = function () {
             if (window.location.protocol == 'http:') {
-                Chat.connect('ws://' + window.location.host + '/eric/message');
+                Chat.connect('ws://' + window.location.host + '/minchat/message');
             } else {
-                Chat.connect('wss://' + window.location.host + '/eric/message');
+                Chat.connect('wss://' + window.location.host + '/minchat/message');
             }
         };
 
-        Chat.sendMessage = (function() {
+        Chat.sendMessage = (function () {
             var message = document.getElementById('chat').value;
             if (message != '') {
                 Chat.socket.send(message);
@@ -94,7 +94,7 @@
 
         var Console = {};
 
-        Console.log = (function(message) {
+        Console.log = (function (message) {
             var console = document.getElementById('console');
             var p = document.createElement('p');
             p.style.wordWrap = 'break-word';
@@ -111,7 +111,8 @@
     </script>
 </head>
 <body>
-<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websockets rely on Javascript being enabled. Please enable
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websockets rely on Javascript being
+    enabled. Please enable
     Javascript and reload this page!</h2></noscript>
 <div>
     <p>

@@ -2,14 +2,14 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com</groupId>
-  <artifactId>eric</artifactId>
+  <artifactId>minchat</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>eric Maven Webapp</name>
+  <name>minchat Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>
 		<!-- spring版本号 -->
-		<spring.version>3.1.1.RELEASE</spring.version>
+		<spring.version>4.1.6.RELEASE</spring.version>
 		<!-- mybatis版本号 -->
 		<mybatis.version>3.2.3</mybatis.version>
 		<!-- log4j日志文件管理包版本 -->
@@ -202,21 +202,37 @@
 		
 		<!-- 日志文件管理包 -->
 		<!-- log start -->
+		<!--<dependency>-->
+			<!--<groupId>log4j</groupId>-->
+			<!--<artifactId>log4j</artifactId>-->
+			<!--<version>${log4j.version}</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>org.slf4j</groupId>-->
+			<!--<artifactId>slf4j-api</artifactId>-->
+			<!--<version>${slf4j.version}</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>org.slf4j</groupId>-->
+			<!--<artifactId>slf4j-log4j12</artifactId>-->
+			<!--<version>${slf4j.version}</version>-->
+		<!--</dependency>-->
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.1.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.logback-extensions</groupId>
+			<artifactId>logback-ext-spring</artifactId>
+			<version>0.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>1.7.12</version>
 		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
+
 		<!-- log end -->
 		<!--tomcat7 websocket -->
 		<dependency>
@@ -227,6 +243,6 @@
 		</dependency>
 	</dependencies>
   <build>
-    <finalName>eric</finalName>
+    <finalName>minchat</finalName>
   </build>
 </project>

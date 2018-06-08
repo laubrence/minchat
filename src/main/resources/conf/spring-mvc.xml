@@ -1,54 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:p="http://www.springframework.org/schema/p"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:context="http://www.springframework.org/schema/context"
-  xmlns:mvc="http://www.springframework.org/schema/mvc"
-  xsi:schemaLocation="
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-3.2.xsd
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
-    
-   <!-- 自动扫描扫描controller（controller层注入），使SpringMVC认为包下用了@controller注解的类是控制器 -->
-   <context:component-scan base-package="com.eric.*.controller"/>
-   
-   <!-- 启用SpringMVC的注解功能,它会自动注册HandlerMapping、HandlerAdapter、ExceptionResolver的相关实例 -->  
-   <mvc:annotation-driven/>
-   
-   <!-- 由于web.xml中设置是：由SpringMVC拦截所有请求,于是在读取静态资源文件的时候就会受到影响(说白了就是读不到) -->  
-   <!-- 经过下面的配置，该标签的作用就是：所有页面中引用"/js/**"的资源，都会从"/resources/js/"里面进行查找 -->  
-   <!-- 我们可以访问http://IP:8080/xxx/js/my.css和http://IP:8080/xxx/resources/js/my.css对比出来 -->  
-   <mvc:resources mapping="/js/**" location="/resources/js/"/>  
-   <mvc:resources mapping="/css/**" location="/resources/css/"/>  
-   <mvc:resources mapping="/images/**" location="/resources/images/"/> 
-   <mvc:resources mapping="/fonts/**" location="/resources/fonts/"/>  
-   
-   <!-- 避免IE在ajax请求时，返回json出现下载 -->
-   <bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">		
-		<property name="supportedMediaTypes">
-			<list>
-				<value>text/html;charset=UTF-8</value>
-			</list>
-		</property>
-	</bean>
-	
-	<!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射 -->
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-	  <property name="messageConverters">
-	    <list>
-	      <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
-	    </list>
-	  </property>
-	</bean>
-	
-	<!-- 定义跳转的文件的前后缀 ，视图模式配置-->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<!-- 自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
-	  	<property name="prefix" value="/WEB-INF/view/" />
-	  	<property name="suffix" value=".jsp" />
-	</bean>
-      
+
+    <!-- 自动扫描扫描controller（controller层注入），使SpringMVC认为包下用了@controller注解的类是控制器 -->
+    <context:component-scan base-package="com.minchat.*.controller"/>
+
+    <!-- 启用SpringMVC的注解功能,它会自动注册HandlerMapping、HandlerAdapter、ExceptionResolver的相关实例 -->
+    <mvc:annotation-driven/>
+
+    <!-- 由于web.xml中设置是：由SpringMVC拦截所有请求,于是在读取静态资源文件的时候就会受到影响(说白了就是读不到) -->
+    <!-- 经过下面的配置，该标签的作用就是：所有页面中引用"/js/**"的资源，都会从"/resources/js/"里面进行查找 -->
+    <!-- 我们可以访问http://IP:8080/xxx/js/my.css和http://IP:8080/xxx/resources/js/my.css对比出来 -->
+    <mvc:resources mapping="/js/**" location="/resources/js/"/>
+    <mvc:resources mapping="/css/**" location="/resources/css/"/>
+    <mvc:resources mapping="/images/**" location="/resources/images/"/>
+    <mvc:resources mapping="/fonts/**" location="/resources/fonts/"/>
+
+    <!-- 避免IE在ajax请求时，返回json出现下载 -->
+    <!--<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
+    <!--<property name="supportedMediaTypes">-->
+    <!--<list>-->
+    <!--<value>text/html;charset=UTF-8</value>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+    <!---->
+    <!--&lt;!&ndash; 启动SpringMVC的注解功能，完成请求和注解POJO的映射 &ndash;&gt;-->
+    <!--<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">-->
+    <!--<property name="messageConverters">-->
+    <!--<list>-->
+    <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <!-- 定义跳转的文件的前后缀 ，视图模式配置-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
+        <property name="prefix" value="/WEB-INF/view/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
 </beans>
